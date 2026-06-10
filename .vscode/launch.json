@@ -1,0 +1,16 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Run Extension",
+      "type": "extensionHost",
+      "request": "launch",
+      "args": [
+        "--extensionDevelopmentPath=/Users/henrygrant/lockview-1"
+      ],
+      "outFiles": [
+        "/Users/henrygrant/lockview-1/out/**/*.js"
+      ]
+    }
+  ]
+}

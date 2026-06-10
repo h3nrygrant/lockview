@@ -1,0 +1,36 @@
+LockView — Logic Locking Analysis for Hardware Security Engineers
+=================================================================
+
+Original Author : [YOUR FULL NAME]
+Created         : 2026
+Contact         : [YOUR EMAIL ADDRESS]
+
+This software was developed as part of undergraduate research in hardware
+security and logic locking, and submitted to the DeveloperWeek New York
+2026 Hackathon.
+
+This file must be retained in all copies or substantial portions of the
+software, including modified versions and derivative works.
+
+Attribution Requirement
+-----------------------
+Any use, distribution, or derivative work based on this software must
+visibly credit the original author as follows:
+
+  "LockView by [YOUR FULL NAME] — https://github.com/[YOUR USERNAME]/lockview"
+
+Commercial Licensing
+--------------------
+This software is licensed under CC BY-NC 4.0 for non-commercial use only.
+Commercial use of any kind requires explicit written permission from the
+original author. To inquire about a commercial license, contact:
+
+  [YOUR EMAIL ADDRESS]
+
+Academic Citation
+-----------------
+If you use LockView in academic research, please cite it as:
+
+  [YOUR FULL NAME]. (2026). LockView: Logic Locking Analysis for Hardware
+  Security Engineers [Software]. DeveloperWeek New York 2026 Hackathon.
+  https://github.com/[YOUR USERNAME]/lockview

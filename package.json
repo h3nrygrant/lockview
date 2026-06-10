@@ -1,0 +1,130 @@
+{
+  "name": "lockview",
+  "displayName": "LockView",
+  "description": "Logic locking analysis for hardware security engineers — netlist parsing, vulnerability linting, and locking coverage visualization inside VS Code",
+  "version": "0.1.0",
+  "publisher": "lockview",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Linters",
+    "Visualization",
+    "Other"
+  ],
+  "keywords": [
+    "logic locking",
+    "hardware security",
+    "verilog",
+    "netlist",
+    "EDA"
+  ],
+  "activationEvents": [
+    "onLanguage:verilog",
+    "onLanguage:bench",
+    "onCommand:lockview.analyze",
+    "onCommand:lockview.showCoverage",
+    "onCommand:lockview.clearDiagnostics"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "lockview.analyze",
+        "title": "LockView: Analyze Netlist",
+        "icon": "$(shield)"
+      },
+      {
+        "command": "lockview.showCoverage",
+        "title": "LockView: Show Locking Coverage"
+      },
+      {
+        "command": "lockview.clearDiagnostics",
+        "title": "LockView: Clear Diagnostics"
+      }
+    ],
+    "languages": [
+      {
+        "id": "verilog",
+        "aliases": [
+          "Verilog",
+          "verilog"
+        ],
+        "extensions": [
+          ".v",
+          ".sv"
+        ]
+      },
+      {
+        "id": "bench",
+        "aliases": [
+          "Bench",
+          "bench"
+        ],
+        "extensions": [
+          ".bench"
+        ]
+      }
+    ],
+    "menus": {
+      "editor/title": [
+        {
+          "command": "lockview.analyze",
+          "when": "resourceExtname == .v || resourceExtname == .sv || resourceExtname == .bench",
+          "group": "navigation"
+        }
+      ],
+      "explorer/context": [
+        {
+          "command": "lockview.analyze",
+          "when": "resourceExtname == .v || resourceExtname == .sv || resourceExtname == .bench"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "LockView",
+      "properties": {
+        "lockview.pythonPath": {
+          "type": "string",
+          "default": "python3",
+          "description": "Path to Python 3 interpreter used by LockView backend"
+        },
+        "lockview.enableAutoAnalyze": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically analyze netlists on file open/save"
+        },
+        "lockview.attackSensitivity": {
+          "type": "string",
+          "enum": [
+            "low",
+            "medium",
+            "high"
+          ],
+          "default": "medium",
+          "description": "Sensitivity level for attack surface warnings"
+        }
+      }
+    },
+    "views": {
+      "explorer": [
+        {
+          "id": "lockviewCoverage",
+          "name": "LockView Coverage",
+          "icon": "$(shield)",
+          "contextualTitle": "Logic Locking Coverage"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "package": "npx @vscode/vsce package"
+  },
+  "devDependencies": {
+    "@types/node": "^20.19.41",
+    "@types/vscode": "^1.120.0",
+    "typescript": "^5.9.3"
+  }
+}

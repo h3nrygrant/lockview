@@ -1,0 +1,44 @@
+# c17 benchmark — logic locked version for LockView testing
+# Key inputs: keyinput0, keyinput1, keyinput2, keyinput3
+# Vulnerabilities planted:
+#   - XOR chain (LV001)
+#   - keyinput0 reused 5x (LV002)
+#   - output G22gat has no locked gate in cone (LV003)
+
+INPUT(G1gat)
+INPUT(G2gat)
+INPUT(G3gat)
+INPUT(G6gat)
+INPUT(G7gat)
+INPUT(keyinput0)
+INPUT(keyinput1)
+INPUT(keyinput2)
+INPUT(keyinput3)
+OUTPUT(G22gat)
+OUTPUT(G23gat)
+OUTPUT(G16gat)
+
+# Normal gates
+G10gat = NAND(G1gat, G3gat)
+G11gat = NAND(G3gat, G6gat)
+G14gat = NAND(G7gat, G11gat)
+G15gat = NAND(G11gat, G2gat)
+
+# Locked gates — XOR chain (LV001 trigger)
+G20gat = XOR(G10gat, keyinput1)
+G21gat = XOR(G20gat, keyinput2)
+G22locked = XOR(G21gat, keyinput3)
+
+# keyinput0 reused across 5 gates (LV002 trigger)
+G30gat = XOR(G14gat, keyinput0)
+G31gat = XOR(G15gat, keyinput0)
+G32gat = AND(G10gat, keyinput0)
+G33gat = OR(G11gat, keyinput0)
+G34gat = XOR(G14gat, keyinput0)
+
+# Final outputs
+G23gat = NAND(G22locked, G30gat)
+G16gat = NAND(G31gat, G32gat)
+
+# G22gat driven by purely unlocked logic (LV003 trigger)
+G22gat = NAND(G1gat, G2gat)
